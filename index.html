@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Shops</title>
+    <meta property="og:description" content="Welcome to Neon Shops – Where Innovation Meets Style!
+
+Step into the future of shopping with our cutting-edge collection of products designed for the modern world. At [Your Shop Name], we blend technology with style, offering a curated selection of items that reflect the spirit of innovation.Explore our vibrant, tech-inspired products that not only meet your needs but also inspire your imagination. Each item is thoughtfully crafted to enhance your daily life, making it easier, more efficient, and undeniably stylish.
+
+Join us in embracing the future. Shop now and experience the next generation of products that redefine what it means to be cool and contemporary!" />
+    <meta property="og:image" content="https://github.com/neondream33/Neon-Shop/blob/main/red4.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@300;400;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary-color: #ff0000;
+            --secondary-color: #ff0000;
+            --background: #000000;
+            --text-color: #ffffff;
+            --neon-glow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 30px var(--primary-color);
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--background);
+            color: var(--text-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+            perspective: 1000px;
+            background: radial-gradient(circle at center, #111 0%, #000 100%);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        /* Enhanced Holographic effects */
+        .holographic {
+            position: relative;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--primary-color);
+            box-shadow: var(--neon-glow);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: var(--neon-glow); }
+            50% { box-shadow: 0 0 15px var(--primary-color), 0 0 25px var(--primary-color), 0 0 35px var(--primary-color); }
+            100% { box-shadow: var(--neon-glow); }
+        }
+
+        .holographic:hover {
+            transform: translateZ(20px) scale(1.02);
+            box-shadow: var(--neon-glow), 0 10px 40px rgba(255,0,0,0.4);
+        }
+
+        /* Simplified logo with square frame */
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            position: relative;
+            padding: 20px;
+            border: 10px solid var(--primary-color);
+            aspect-ratio: 1;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .logo:hover {
+            transform: scale(1.02) rotateY(5deg);
+        }
+
+        .logo img {
+            max-width: 300px;
+            filter: drop-shadow(0 0 20px var(--primary-color));
+            transition: all 0.5s ease;
+        }
+
+        .logo:hover img {
+            filter: drop-shadow(0 0 40px var(--primary-color)) brightness(1.3);
+        }
+
+        /* Search bar styling */
+        .search-container {
+            text-align: center;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .search-bar {
+            width: 40%;
+            padding: 12px 24px;
+            font-size: 16px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            color: var(--text-color);
+            font-family: 'Orbitron', sans-serif;
+            transition: all 0.3s ease;
+            box-shadow: var(--neon-glow);
+        }
+
+        .category-select {
+            width: 30%;
+            padding: 12px 24px;
+            font-size: 16px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            color: var(--text-color);
+            font-family: 'Orbitron', sans-serif;
+            transition: all 0.3s ease;
+            box-shadow: var(--neon-glow);
+            cursor: pointer;
+        }
+
+        .search-bar:focus, .category-select:focus {
+            outline: none;
+            transform: scale(1.02);
+            box-shadow: 0 0 20px var(--primary-color);
+        }
+
+        /* Enhanced products grid with hover effects */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+            transform-style: preserve-3d;
+            transition: transform 0.2s ease-out;
+        }
+
+        .product {
+            position: relative;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            backdrop-filter: blur(5px);
+        }
+
+        .product:hover {
+            transform: scale(1.02) translateZ(10px);
+            box-shadow: var(--neon-glow);
+            background: rgba(20, 0, 0, 0.9);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .product-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,0,0,0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .product:hover .product-image::after {
+            opacity: 1;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product:hover .product-image img {
+            transform: scale(1.05) rotate(1deg);
+        }
+
+        .product-description {
+            margin: 15px 0;
+            font-size: 0.9em;
+            line-height: 1.6;
+            color: #cccccc;
+            transition: color 0.3s ease;
+        }
+
+        .product:hover .product-description {
+            color: #ffffff;
+            text-shadow: 0 0 5px rgba(255,255,255,0.5);
+        }
+
+        /* Enhanced Slideshow with 3D effect */
+        .slideshow {
+            width: 800px;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+            margin: 40px auto;
+            border-radius: 20px;
+            transform-style: preserve-3d;
+            box-shadow: 0 0 30px rgba(255,0,0,0.2);
+        }
+
+        .slideshow img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: all 0.8s ease;
+            object-fit: cover;
+            border-radius: 15px;
+            transform: translateZ(0) scale(1.1);
+        }
+
+        .slideshow img.active {
+            opacity: 1;
+            transform: translateZ(20px) scale(1);
+        }
+
+        /* Enhanced Button styling */
+        button {
+            background: linear-gradient(45deg, #ff0000, #cc0000);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-shadow: 0 0 5px rgba(255,255,255,0.5);
+        }
+
+        button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: var(--neon-glow), 0 5px 15px rgba(255,0,0,0.4);
+        }
+
+        button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+        }
+
+        button:hover::after {
+            left: 100%;
+        }
+
+        /* Enhanced Discord section */
+        .discord-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--primary-color);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .discord-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff0000, #cc0000);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-shadow: 0 0 5px rgba(255,255,255,0.5);
+        }
+
+        .discord-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: var(--neon-glow), 0 10px 20px rgba(255,0,0,0.3);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .slideshow {
+                width: 100%;
+                height: 300px;
+            }
+
+            .search-bar, .category-select {
+                width: 80%;
+            }
+
+            .search-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Dark mode toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: none;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 10px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 5px var(--primary-color); }
+            to { box-shadow: 0 0 20px var(--primary-color); }
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-color);
+            color: var(--background);
+            transform: rotate(180deg);
+        }
+
+        /* Typewriter effect */
+        .typewriter h1 {
+            overflow: hidden;
+            border-right: .15em solid var(--primary-color);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary-color) }
+        }
+
+        /* Added: Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        /* Added: Loading animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--primary-color);
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <button class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <button class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
+    
+    <div class="container">
+        <div class="logo holographic">
+            <img src="red3.png" alt="Your Logo" class="animate__animated animate__fadeIn">
+        </div>
+
+        <div class="typewriter holographic">
+            <h1 id="typewriter-text">| |</h1>
+        </div>
+
+        <div class="intro holographic">
+            <p>🌟 Welcome to Neon Dreams channel! 🌟
+
+                Join me as I explore the worlds of programming, 2D animation, and the secrets of YouTube success. Whether you're looking to enhance your coding skills, learn animation techniques, or crack the YouTube algorithm, you'll find valuable tips and tutorials here. Let's create, learn, and grow together!</p>
+            <a href="https://www.youtube.com/@Neon_dreams33" class="discord-button">Subscribe</a>
+        </div>
+
+        <div class="slideshow holographic">
+            <img src="efg (1).png" alt="Product 1" class="active">
+            <img src="Limited.png" alt="Product 2">
+            <img src="How to read mind like a book.png" alt="Product 3">
+            <img src="Learn blender 2D animation basics with a very low cost.gif" alt="Product 4">
+        </div>
+
+        <div class="search-container holographic">
+            <input type="text" class="search-bar" id="productSearch" placeholder="Search products..." onkeyup="searchProducts()">
+            <select class="category-select" id="categorySelect" onchange="searchProducts()">
+                <option value="">All Categories</option>
+                <option value="ebook">Ebooks</option>
+                
+                <option value="tutorial">Tutorials</option>
+                
+            </select>
+        </div>
+
+        <div class="products">
+            <div class="product holographic" data-category="ebook">
+                <div class="product-image">
+                    <img src="efg (1).png" alt="Product 1">
+                </div>
+                <h3>Ebook for income</h3>
+                <p class="product-description">Experience the next level of innovation with our flagship product. Cutting-edge features meet sleek design.</p>
+                <a href="https://neondreams33.gumroad.com/l/booktostart?layout=profile" class="product-button">
+                    <button>Buy Now</button>
+                </a>
+            </div>
+            <div class="product holographic" data-category="ebook">
+                <div class="product-image">
+                    <img src="Limited.png" alt="Product 2">
+                </div>
+                <h3>Book based on Youtube algorithm</h3>
+                <p class="product-description">Unlock the secrets to becoming a successful YouTuber with YouTube Unlocked: The Cheat Codes to Success. Whether you're just starting out or you've been posting videos with little traction, this book is your ultimate guide to understanding the path to YouTube success.</p>
+                <a href="https://neondreams33.gumroad.com/l/BookforYTsuccess?layout=profile" class="product-button">
+                    <button>Buy Now</button>
+                </a>
+            </div>
+            <div class="product holographic" data-category="ebook">
+                <div class="product-image">
+                    <img src="download.jpeg" alt="Product 3">
+                </div>
+                <h3>Learn body language</h3>
+                <p class="product-description">Mastering Body Language is your essential guide to understanding people's hidden cues. Learn to interpret gestures, expressions, and movements to gain insight into emotions and intentions in any situation. Perfect for boosting your social awareness and communication skills. </p>             
+                <a href="https://neondreams33.gumroad.com/l/Bootomind" class="product-button">
+                    <button>Buy Now</button>
+                </a>
+            </div>
+            <div class="product holographic" data-category="tutorial">
+                <div class="product-image">
+                    <img src="logo gif.gif" alt="Product 4">
+                </div>
+                <h3>Blender 2d animation tutorial</h3>
+                <p class="product-description">Unleash your creative potential with my Basic 2D Blender Animation Course, perfect for beginners who want to explore the exciting world of 2D animation.</p>
+                <a href="https://neondreams33.gumroad.com/l/blendertutorial123" class="product-button">
+                    <button>Buy Now</button>
+                </a>
+            </div>
+            <div class="product holographic" data-category="ebook">
+                <div class="product-image">
+                    <img src="nmcprn5y65utvdql4yjafc734m0m.png" alt="Product 5">
+                </div>
+                <h3>Learn TO Earn</h3>
+                <p class="product-description">Unlock Your Financial Future 💰: A Comprehensive Guide to Making Money at an Early Age</p>
+                <a href="https://neondreams33.gumroad.com/l/Bootomind" class="product-button">
+                    <button>Buy Now</button>
+                </a>
+            </div>
+        </div>
+
+        <div class="discord-section holographic">
+            <h2>Join Our Community!</h2>
+            <a href="https://discord.gg/2YPbUfuK" class="discord-button">Join Discord</a>
+        </div>
+    </div>
+
+    
+    <script src="cursor.js"></script>
+    <script>
+        // Loading animation
+        window.addEventListener('load', () => {
+            const loadingOverlay = document.querySelector('.loading-overlay');
+            setTimeout(() => {
+                loadingOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    loadingOverlay.style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // Scroll to top functionality
+        const scrollTopBtn = document.querySelector('.scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Enhanced slideshow with fade effect
+        const slides = document.querySelectorAll('.slideshow img');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        setInterval(nextSlide, 3000);
+
+        // Product search functionality with category filter
+        function searchProducts() {
+            const searchInput = document.getElementById('productSearch');
+            const categorySelect = document.getElementById('categorySelect');
+            const filter = searchInput.value.toLowerCase();
+            const category = categorySelect.value.toLowerCase();
+            const products = document.querySelectorAll('.product');
+
+            products.forEach(product => {
+                const title = product.querySelector('h3').textContent.toLowerCase();
+                const description = product.querySelector('.product-description').textContent.toLowerCase();
+                const productCategory = product.getAttribute('data-category') || '';
+                
+                const matchesSearch = title.includes(filter) || description.includes(filter);
+                const matchesCategory = !category || productCategory === category;
+                
+                if (matchesSearch && matchesCategory) {
+                    product.style.display = '';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        // Enhanced Dark/Light mode toggle with smooth transition and multiple colors
+        const themeToggle = document.querySelector('.theme-toggle');
+        const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+        let currentColorIndex = 0;
+
+        themeToggle.addEventListener('click', () => {
+            const root = document.documentElement;
+            currentColorIndex = (currentColorIndex + 1) % colors.length;
+            const newColor = colors[currentColorIndex];
+            
+            root.style.setProperty('--primary-color', newColor);
+            root.style.setProperty('--secondary-color', newColor);
+            
+            // Keep moon/sun icon toggle logic
+            const icon = themeToggle.querySelector('i');
+            icon.classList.toggle('fa-moon');
+            icon.classList.toggle('fa-sun');
+        });
+
+        // Cursor tracking for logo section with reduced movement
+        document.addEventListener('mousemove', (e) => {
+            const logo = document.querySelector('.logo');
+            const rect = logo.getBoundingClientRect();
+            
+            // Calculate the center of the logo container
+            const containerCenterX = rect.left + rect.width / 2;
+            const containerCenterY = rect.top + rect.height / 2;
+            
+            // Calculate the distance from cursor to center with greatly reduced movement
+            const deltaX = (e.clientX - containerCenterX) / 200;
+            const deltaY = (e.clientY - containerCenterY) / 200;
+            
+            // Apply the transform with smooth transition and reduced movement
+            logo.style.transform = `perspective(1000px) rotateX(${-deltaY}deg) rotateY(${deltaX}deg) translateZ(10px)`;
+        });
+
+        // Reset logo position when mouse leaves
+        document.addEventListener('mouseleave', () => {
+            const logo = document.querySelector('.logo');
+            logo.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+        });
+
+        // Further reduced cursor tracking for products section
+        document.addEventListener('mousemove', (e) => {
+            const productsContainer = document.querySelector('.products');
+            const rect = productsContainer.getBoundingClientRect();
+            
+            // Calculate the center of the products container
+            const containerCenterX = rect.left + rect.width / 2;
+            const containerCenterY = rect.top + rect.height / 2;
+            
+            // Calculate the distance from cursor to center with minimal movement
+            const deltaX = (e.clientX - containerCenterX) / 400;
+            const deltaY = (e.clientY - containerCenterY) / 400;
+            
+            // Apply the transform with smooth transition and minimal movement
+            productsContainer.style.transform = `perspective(1000px) rotateX(${-deltaY}deg) rotateY(${deltaX}deg) translateZ(5px)`;
+        });
+
+        // Reset products container position when mouse leaves
+        document.addEventListener('mouseleave', () => {
+            const productsContainer = document.querySelector('.products');
+            productsContainer.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+        });
+
+        // Typewriter effect with multiple lines
+        const typewriterText = document.getElementById('typewriter-text');
+        const texts = [
+            "welcome to Neon Dreams Shop",
+            "Discover cutting-edge products that blend innovation.",
+            "Each item is crafted for performance and style.",
+            "| There is no border for creativity |"
+        ];
+        let textIndex = 0;
+
+        function typeWriter(text, i = 0) {
+            if (i < text.length) {
+                typewriterText.innerHTML += text.charAt(i);
+                setTimeout(() => typeWriter(text, i + 1), 100);
+            } else {
+                setTimeout(eraseText, 2000);
+            }
+        }
+
+        function eraseText() {
+            const text = typewriterText.innerHTML;
+            if (text.length > 0) {
+                typewriterText.innerHTML = text.substring(0, text.length - 1);
+                setTimeout(eraseText, 50);
+            } else {
+                textIndex = (textIndex + 1) % texts.length;
+                setTimeout(() => typeWriter(texts[textIndex]), 500);
+            }
+        }
+
+        // Start the typewriter effect
+        typeWriter(texts[0]);
+    </script>
+</body>
+</html>
